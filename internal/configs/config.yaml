@@ -1,0 +1,6 @@
+service:
+  port: ":8080"
+  secretJWT: "supersecretkey"
+
+database:
+  dataSourceName: "postgres://admin:root@localhost:5432/gomusiccatalog?sslmode=disable"
