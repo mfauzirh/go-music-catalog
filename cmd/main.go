@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/mfauzirh/go-music-catalog/internal/configs"
+	"github.com/mfauzirh/go-music-catalog/internal/models/memberships"
 	"github.com/mfauzirh/go-music-catalog/pkg/internalsql"
 	"github.com/rs/zerolog/log"
 )
@@ -21,10 +22,12 @@ func main() {
 
 	cfg = configs.Get()
 
-	_, err = internalsql.Connect(cfg.Database.DataSourceName)
+	db, err := internalsql.Connect(cfg.Database.DataSourceName)
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to connect to database")
 	}
+
+	db.AutoMigrate(&memberships.User{})
 
 	r := gin.Default()
 
