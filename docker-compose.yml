@@ -1,0 +1,11 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    container_name: go-mucic-catalog
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: gomusiccatalog
